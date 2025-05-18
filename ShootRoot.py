@@ -23,7 +23,7 @@ player_X = 370
 player_Y = 480
 pxc = 0
 
-noe = 3
+noe = 5
 enemy_img = []
 enemy_X = []
 enemy_Y = []
