@@ -45,11 +45,25 @@ def GradientDescent(X, y, lr=0.1, max_steps=100):
 
 # Execute Gradient Descent
 theta, error_list = GradientDescent(X, y)
-print(theta)
+# print(theta)
+
+###Test data prepare
+x_test = pd.read_csv(os.path.join(data_path, "Linear_X_Test.csv")).to_numpy().flatten()
+y_pred = hypothesis(x_test, theta)
+# ##Saving to a file
+df = pd.DataFrame(data = y_pred, columns = ["y"])
+df.to_csv(os.path.join(data_path, "Linear_y_Test.csv"),index = False)
+
+##Plotting everything
+plt.scatter(X,y)
+plt.plot(X,hypothesis(X,theta), color = 'orange', label = 'Training_predictions')
+plt.plot(x_test,y_pred, color = 'green', label = 'Test_predictions')
+plt.legend()
+plt.show()
 
 # Plot Error Reduction Over Iterations
-plt.plot(error_list)
-plt.xlabel("Iterations")
-plt.ylabel("Error")
-plt.title("Error Reduction Over Iterations")
-plt.show()
+# plt.plot(error_list)
+# plt.xlabel("Iterations")
+# plt.ylabel("Error")
+# plt.title("Error Reduction Over Iterations")
+# plt.show()
