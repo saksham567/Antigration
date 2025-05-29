@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 
 # Ensure cross-platform compatibility for file paths
-data_path = ""  ##Only fill when the files are present in a sub folder present
+data_path = "Datasets"  ##Only fill when the files are present in a sub folder present
 
 X_Train = pd.read_csv(os.path.join(data_path, "Linear_X_Train.csv"))
 Y_Train = pd.read_csv(os.path.join(data_path, "Linear_Y_Train.csv"))
@@ -30,7 +30,7 @@ def gradient(X, y, theta):
     y_pred = hypothesis(X, theta)
     error = y_pred - y
     grad = np.array([np.sum(error), np.sum(error * X)]) / m
-    total_error = np.mean(error ** 2)
+    total_error = np.mean(error ** 2) ##Taking mean covers the division by 'm' itself
     return grad, total_error
 
 # Gradient Descent (vectorized update)
@@ -53,7 +53,7 @@ x_test = pd.read_csv(os.path.join(data_path, "Linear_X_Test.csv")).to_numpy().fl
 y_pred = hypothesis(x_test, theta)
 ## Saving to a file
 df = pd.DataFrame(data = y_pred, columns = ["y"])
-df.to_csv(os.path.join(data_path, "y_predictions.csv"),index = False)
+# df.to_csv(os.path.join(data_path, "y_predictions.csv"),index = False)  ##Only uncomment when you need to actually save a file
 
 ### Plotting everything
 # plt.scatter(X,y)
